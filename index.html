@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aisha Abbas | Luxury UGC Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Cormorant Garamond voor de Vogue-look, Montserrat voor clean minimalisme -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --white: #FFFFFF;
@@ -12,7 +13,7 @@
             --sandy: #D2B48C;
             --taupe: #8E8071;
             --cocoa: #4B3D33;
-            --bg-stone: #C7C0B7; /* Muted Taupe / Stone */
+            --bg-stone: #C7C0B7; /* Achtergrondkleur: Warm Stone */
         }
 
         * {
@@ -37,166 +38,140 @@
             letter-spacing: 4px;
         }
 
-        section {
-            padding: 120px 10%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- NAVIGATION --- */
+        /* --- Navigatie --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 10%;
+            padding: 40px 10%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             z-index: 1000;
-            background: transparent;
-            transition: 0.5s;
+            transition: 0.5s ease;
+        }
+
+        nav.scrolled {
+            padding: 20px 10%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         nav a {
             text-decoration: none;
-            color: var(--white);
+            color: var(--cocoa);
             font-size: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            font-weight: 400;
         }
 
-        /* --- HERO --- */
+        /* --- Animaties --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://images.unsplash.com/photo-1528255671579-01b9e182ed1d?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
-            padding: 0;
-            opacity: 1;
-            transform: none;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('image_3.png') no-repeat center center/cover;
+            background-attachment: fixed;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: clamp(3rem, 10vw, 7rem);
             color: var(--white);
             text-align: center;
+            z-index: 2;
         }
 
-        /* --- ABOUT --- */
+        /* --- About Section --- */
+        section { padding: 120px 10%; }
+
         .about {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
             background: var(--cream);
         }
 
-        .about-img {
+        .about-image {
             width: 100%;
             height: 600px;
-            background: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop') center/cover;
-            filter: sepia(20%);
+            background: url('image_4.png') no-repeat center center/cover;
+            border-radius: 2px;
+            transition: transform 1s ease;
         }
 
-        .about-text p {
+        .about-content p {
             font-size: 1.1rem;
             margin-bottom: 30px;
-            max-width: 500px;
+            max-width: 450px;
             font-weight: 300;
         }
 
-        /* --- WHY UGC STATS --- */
-        .stats-section {
+        /* --- Why UGC Section --- */
+        .why-ugc {
             background: var(--bg-stone);
             text-align: center;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+        .why-ugc h2 { font-size: 3rem; margin-bottom: 40px; }
+        
+        .ugc-text {
+            max-width: 700px;
+            margin: 0 auto 80px;
+            font-size: 1.2rem;
+            font-weight: 300;
         }
 
-        .stat-item h3 {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+        }
+
+        .stat-category h3 { margin-bottom: 40px; border-bottom: 1px solid var(--taupe); padding-bottom: 10px; }
+
+        .stat-item { margin-bottom: 40px; }
+
+        .stat-item h4 {
             font-size: 3.5rem;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--cocoa);
-            margin-bottom: 10px;
         }
 
         .stat-item p {
             font-size: 0.8rem;
-            letter-spacing: 1px;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* --- PORTFOLIO --- */
-        .portfolio-section {
-            background: var(--white);
-        }
-
-        .portfolio-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .iphone-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 100px;
-        }
-
-        .iphone-mockup {
-            position: relative;
-            width: 100%;
-            padding-top: 200%; /* iPhone Aspect Ratio */
-            background: #111;
-            border-radius: 30px;
-            border: 8px solid #222;
-            overflow: hidden;
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-            cursor: pointer;
-        }
-
-        .iphone-mockup:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            z-index: 10;
-        }
-
-        /* Initial slight rotations for editorial feel */
-        .iphone-grid div:nth-child(odd) { transform: rotate(-2deg); }
-        .iphone-grid div:nth-child(even) { transform: rotate(2deg); }
-
-        .iphone-mockup video, .iphone-mockup .photo-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- BRANDS --- */
+        /* --- Brands Logo Strip --- */
         .brands {
-            background: var(--cream);
+            background: var(--white);
             text-align: center;
             padding: 80px 10%;
         }
 
         .logo-strip {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
             gap: 50px;
             margin-top: 40px;
             filter: grayscale(1);
@@ -206,202 +181,241 @@
         .logo-strip span {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            font-weight: bold;
+            letter-spacing: 2px;
         }
 
-        /* --- SERVICES --- */
-        .services {
-            background: var(--white);
+        /* --- Rates Section --- */
+        .rates {
+            background: var(--cream);
         }
 
-        .pricing-list {
-            max-width: 700px;
+        .rates-container {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .price-item {
+        .rate-row {
             display: flex;
             justify-content: space-between;
+            padding: 25px 0;
             border-bottom: 1px solid var(--sandy);
-            padding: 20px 0;
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .includes {
-            margin-top: 50px;
+        .package-footer {
+            margin-top: 60px;
             text-align: center;
-            font-size: 0.8rem;
-            color: var(--taupe);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
-        /* --- TESTIMONIALS --- */
+        /* --- Testimonials --- */
         .testimonials {
-            background: var(--bg-stone);
+            background: var(--white);
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.3);
             padding: 40px;
-            font-style: italic;
+            background: var(--cream);
+            border-radius: 4px;
         }
 
-        /* --- CONTACT --- */
+        .testimonial-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Contact --- */
         .contact {
             background: var(--cocoa);
             color: var(--white);
             text-align: center;
         }
 
-        .contact h2 { color: var(--white); margin-bottom: 20px; }
-        .contact p { margin-bottom: 40px; opacity: 0.8; }
-        
+        .contact h2 { color: var(--white); margin-bottom: 30px; font-size: 3rem; }
+
         .contact-links a {
             display: block;
             color: var(--sandy);
             text-decoration: none;
-            margin: 10px 0;
+            margin: 15px 0;
             font-size: 1.2rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        .contact-links a:hover { color: var(--white); }
+
+        /* --- Mobiel --- */
         @media (max-width: 768px) {
             .about { grid-template-columns: 1fr; }
-            .iphone-grid { grid-template-columns: repeat(2, 1fr); }
-            .about-img { height: 400px; }
+            .about-image { height: 450px; }
+            section { padding: 80px 5%; }
+            .package-footer { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav id="navbar">
-        <a href="#">Aisha Abbas</a>
-        <a href="#contact">Work With Me</a>
+    <nav id="main-nav">
+        <a href="#" style="font-weight: 400; font-size: 14px;">Aisha Abbas</a>
+        <a href="#contact">Work with me</a>
     </nav>
 
-    <section class="hero visible">
-        <h1>Aisha Abbas</h1>
-    </section>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <h1 class="reveal">Aisha Abbas</h1>
+    </div>
 
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
-        <div class="about-img"></div>
-        <div class="about-text">
+        <div class="about-image reveal"></div>
+        <div class="about-content reveal">
             <p>I’m a UGC content creator focused on capturing authentic, aesthetic moments that feel natural and inspiring.</p>
             <p>I’ve explored 20+ countries across Africa, Asia, and Europe, turning real experiences into immersive, story-driven content.</p>
             <p>I work with brands to create effortless, on-location visuals that connect with audiences and leave a lasting impression.</p>
         </div>
     </section>
 
-    <section class="stats-section">
-        <h2>People trust people.</h2>
-        <p style="max-width: 600px; margin: 20px auto;">UGC is powerful because people trust people. Authentic content creates stronger connections, builds trust, and influences decisions in a natural way.</p>
+    <!-- WHY UGC SECTION -->
+    <section class="why-ugc">
+        <h2 class="reveal">People trust people.</h2>
+        <p class="ugc-text reveal">UGC is powerful because people trust people. Authentic content creates stronger connections, builds trust, and influences decisions in a natural way.</p>
         
         <div class="stats-grid">
-            <div class="stat-item"><h3>92%</h3><p>Look for recommendations</p></div>
-            <div class="stat-item"><h3>87%</h3><p>Brands use UGC</p></div>
-            <div class="stat-item"><h3>60%</h3><p>Trust customers over ads</p></div>
-            <div class="stat-item"><h3>64%</h3><p>Search reviews first</p></div>
+            <!-- Brands -->
+            <div class="stat-category reveal">
+                <h3>For Brands</h3>
+                <div class="stat-item">
+                    <h4>92%</h4>
+                    <p>Look for recommendations</p>
+                </div>
+                <div class="stat-item">
+                    <h4>87%</h4>
+                    <p>Brands use UGC</p>
+                </div>
+                <div class="stat-item">
+                    <h4>72%</h4>
+                    <p>Say UGC builds trust</p>
+                </div>
+            </div>
+
+            <!-- Clients -->
+            <div class="stat-category reveal">
+                <h3>For Consumers</h3>
+                <div class="stat-item">
+                    <h4>60%</h4>
+                    <p>Trust customers over ads</p>
+                </div>
+                <div class="stat-item">
+                    <h4>64%</h4>
+                    <p>Seek reviews before buying</p>
+                </div>
+                <div class="stat-item">
+                    <h4>50%</h4>
+                    <p>Want real social content</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="portfolio-section">
-        <div class="portfolio-title"><h2>Videography</h2></div>
-        <div class="iphone-grid">
-            <!-- Replace 'src' with actual video links -->
-            <div class="iphone-mockup"><video src="" autoplay muted loop poster="https://via.placeholder.com/400x800/EAE7E1/4B3D33?text=Hotel+Luxury"></video></div>
-            <div class="iphone-mockup"><video src="" autoplay muted loop poster="https://via.placeholder.com/400x800/EAE7E1/4B3D33?text=Skincare+Routine"></video></div>
-            <div class="iphone-mockup"><video src="" autoplay muted loop poster="https://via.placeholder.com/400x800/EAE7E1/4B3D33?text=Travel+Vlog"></video></div>
-            <div class="iphone-mockup"><video src="" autoplay muted loop poster="https://via.placeholder.com/400x800/EAE7E1/4B3D33?text=Dining+Experience"></video></div>
-        </div>
-
-        <div class="portfolio-title"><h2>Photography</h2></div>
-        <div class="iphone-grid">
-            <div class="iphone-mockup"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400" alt=""></div>
-            <div class="iphone-mockup"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?q=80&w=400" alt=""></div>
-            <div class="iphone-mockup"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?q=80&w=400" alt=""></div>
-            <div class="iphone-mockup"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1515377662630-6c74844697f3?q=80&w=400" alt=""></div>
-        </div>
-    </section>
-
+    <!-- BRANDS LOGO STRIP -->
     <section class="brands">
-        <h2>Brands I’ve worked with</h2>
-        <div class="logo-strip">
-            <span>Gisou</span>
-            <span>Wyndham</span>
-            <span>Airbnb</span>
-            <span>Trip.com</span>
-            <span>%Arabica</span>
-            <span>El&N London</span>
+        <h3 style="font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 20px;">TRUSTED BY</h3>
+        <div class="logo-strip reveal">
+            <span>DOVE</span>
+            <span>SWISSOTEL</span>
+            <span>WYNDHAM</span>
+            <span>AIRBNB</span>
+            <span>TRIP.COM</span>
+            <span>GISOU</span>
+            <span>%ARABICA</span>
         </div>
     </section>
 
-    <section class="services">
-        <h2 style="text-align:center; margin-bottom: 60px;">Services & Rates</h2>
-        <div class="pricing-list">
-            <div class="price-item"><span>Edited Video</span><span>€65</span></div>
-            <div class="price-item"><span>Raw Footage</span><span>€45</span></div>
-            <div class="price-item"><span>3 Video Bundle</span><span>€180</span></div>
-            <div class="price-item"><span>Monthly Management</span><span>Custom</span></div>
-        </div>
-        <div class="includes">
-            <p>Every package includes: Full usage rights | Delivery within 14 days | Fully edited videos | On-location shoots</p>
+    <!-- SERVICES & RATES -->
+    <section class="rates">
+        <h2 style="text-align: center; margin-bottom: 60px;" class="reveal">Services & Rates</h2>
+        <div class="rates-container reveal">
+            <div class="rate-row"><span>Edited UGC Video</span><span>€65</span></div>
+            <div class="rate-row"><span>Raw Footage Bundle</span><span>€45</span></div>
+            <div class="rate-row"><span>3 High-End Videos</span><span>€180</span></div>
+            <div class="rate-row"><span>Social Media Management</span><span>Custom</span></div>
+            <div class="rate-row"><span>International Collabs</span><span>Custom</span></div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 20px;">Every package includes:</p>
+                <div class="package-footer">
+                    <span>Full usage rights</span>
+                    <span>Delivery within 14 days</span>
+                    <span>Fully edited visuals</span>
+                    <span>On-location shoots</span>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- TESTIMONIALS -->
     <section class="testimonials">
-        <div class="testimonial-card">
-            <p>“Loved the content, it felt natural and elevated our brand.”</p>
-            <br><span>— Ema, The Leaf</span>
+        <div class="testimonial-card reveal">
+            <p>“Loved the content, it felt natural and elevated our brand style perfectly.”</p>
+            <h3>Ema – The Leaf</h3>
         </div>
-        <div class="testimonial-card">
-            <p>“The storytelling style Aisha uses is exactly what the luxury market needs.”</p>
-            <br><span>— Michael, Sexy Fish</span>
+        <div class="testimonial-card reveal">
+            <p>“Aisha catches the light and the vibe in a way that feels like a high-end campaign.”</p>
+            <h3>Michael – Sexy Fish</h3>
         </div>
-        <div class="testimonial-card">
-            <p>“Professional, timely, and aesthetic. A dream to work with.”</p>
-            <br><span>— Jennifer, Be Zanzibar</span>
+        <div class="testimonial-card reveal">
+            <p>“Professional, fast, and the visuals are stunning. Our engagement spiked.”</p>
+            <h3>Jennifer – Be Zanzibar</h3>
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="contact" id="contact">
-        <h2>Let’s create something beautiful together.</h2>
-        <p>Aisha Abbas | Premium Travel & Lifestyle UGC</p>
-        <div class="contact-links">
+        <h2 class="reveal">Let’s create something beautiful together.</h2>
+        <div class="contact-links reveal">
             <a href="mailto:Aisha.ali1346@gmail.com">Aisha.ali1346@gmail.com</a>
             <a href="tel:+971527443416">+971 52 744 3416</a>
-            <a href="https://wa.me/31687849311">WhatsApp Me</a>
+            <a href="https://wa.me/31687849311">WhatsApp</a>
         </div>
     </section>
 
     <script>
-        // Intersection Observer for fade-in animations
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Scroll animatie trigger
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
                 }
-            });
-        }, observerOptions);
+            }
+        }
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Navbar change on scroll
+        // Navbar effect op scroll
         window.onscroll = function() {
-            const nav = document.getElementById('navbar');
+            const nav = document.getElementById('main-nav');
             if (window.pageYOffset > 100) {
-                nav.style.background = "rgba(75, 61, 51, 0.9)"; // Cocoa background
-                nav.style.padding = "15px 10%";
+                nav.classList.add('scrolled');
             } else {
-                nav.style.background = "transparent";
-                nav.style.padding = "30px 10%";
+                nav.classList.remove('scrolled');
             }
         };
+
+        // Initial check
+        reveal();
     </script>
 </body>
-</html>
 </html>
